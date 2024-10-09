@@ -1,0 +1,23 @@
+{
+    "name": "file-manager-node-js",
+    "version": "1.0.0",
+    "description": "https://github.com/yvolha/file-manager-node-js",
+    "engines": {
+      "node": ">=20.0.0"
+    },
+    "type": "module",
+    "scripts": {
+     "start": "node src/index.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/yvolha/file-manager-node-js"
+    },
+    "keywords": [
+      "nodejs",
+      "assignments"
+    ],
+    "author": "yvolha",
+    "license": "ISC"
+  }
+  
