@@ -1,9 +1,9 @@
 import { DEFAULT_USERNAME_TEXT } from "../utils/constants.js";
 import { printYellowText } from "../utils/get-color-coded-text.js";
 
-export function getUsername(){
-    let username = 'Username';
+let username = 'Username';
 
+export function getUsername(){
     const nameArg = '--username';
     const nameValueArgSeparator = '=';
 
@@ -12,7 +12,7 @@ export function getUsername(){
     if (!argNameAndValueCurrent) {
         printYellowText(DEFAULT_USERNAME_TEXT);
 
-        return username;
+        return;
     }
 
     const argNameCurrent = argNameAndValueCurrent.split(nameValueArgSeparator)[0];
@@ -27,6 +27,8 @@ export function getUsername(){
     } else {
         username = argValueCurrent;
     }
-
-    return username;
 }
+
+getUsername()
+
+export default username;

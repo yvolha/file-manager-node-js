@@ -1,17 +1,18 @@
 import {createInterface} from 'node:readline';
 import { stdin, stdout } from 'node:process';
 
-import { userName } from './username.js';
-import handleCommand from './command-handler.js';
+import { printMagentaText } from '../utils/get-color-coded-text.js';
+import { PROMPT_TEXT } from '../utils/constants.js';
+import username from './get-username.js';
 
 const launchReadline = async () => {
-  console.log('Please type your command.\n');
+    printMagentaText(PROMPT_TEXT);
 
-  const rl = createInterface({ stdin, output });
+  const rl = createInterface({ stdin, stdout });
 
   rl.on('line', async (stdin) => {
     if (stdin === '.exit') {
-      console.log(`Thank you for using File Manager, ${userName}, goodbye!`);
+      console.log(`Thank you for using File Manager, ${username}, goodbye!`);
       rl.close();
     } else if (stdin.length > 0) {
       await handleCommand(stdin);
@@ -21,7 +22,7 @@ const launchReadline = async () => {
   });
   
   rl.on('SIGINT', () => {
-    console.log(`Thank you for using File Manager, ${userName}, goodbye!`);
+    console.log(`Thank you for using File Manager, ${username}, goodbye!`);
     rl.close();
   });
 }
