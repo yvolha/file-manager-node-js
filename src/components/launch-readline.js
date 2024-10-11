@@ -1,30 +1,34 @@
-import {createInterface} from 'node:readline';
-import { stdin, stdout } from 'node:process';
+import { createInterface } from 'node:readline';
+import { stdin as input, stdout as output} from 'node:process';
 
 import { printMagentaText } from '../utils/get-color-coded-text.js';
-import { PROMPT_TEXT } from '../utils/constants.js';
+import { INVALID_INPUT_TEXT, PROMPT_TEXT } from '../utils/constants.js';
 import username from './get-username.js';
+import { getGoodbyeText } from '../utils/get-text.js';
 
 const launchReadline = async () => {
     printMagentaText(PROMPT_TEXT);
 
-  const rl = createInterface({ stdin, stdout });
+    const rl = createInterface({ input, output });
 
-  rl.on('line', async (stdin) => {
-    if (stdin === '.exit') {
-      console.log(`Thank you for using File Manager, ${username}, goodbye!`);
-      rl.close();
-    } else if (stdin.length > 0) {
-      await handleCommand(stdin);
-    } else {
-      console.log('Invalid input.\n');
-    }
-  });
+    rl.on('line', async (input) => {
+        if (input === '.exit') {
+        printMagentaText(getGoodbyeText(username));
+        rl.close();
+
+        } else if (input.length > 0) {
+
+        // await handleCommand(input);
+        } else {
+
+        console.log(INVALID_INPUT_TEXT);
+        }
+    });
   
-  rl.on('SIGINT', () => {
-    console.log(`Thank you for using File Manager, ${username}, goodbye!`);
-    rl.close();
-  });
+    rl.on('SIGINT', () => {
+        printMagentaText(getGoodbyeText(username));
+        rl.close();
+    });
 }
 
 export default launchReadline;
