@@ -6,7 +6,7 @@ import { getGreetingText } from "./utils/get-text.js";
 
 async function startApp(){
     printMagentaText(getGreetingText(username));
-    console.log(await getCurrentDir());
+    console.log(`Your current directory is \x1b[32m${await getCurrentDir()}\x1b[0m\n`);
 
     launchReadline();
 

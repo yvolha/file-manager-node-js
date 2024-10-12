@@ -43,5 +43,5 @@ export const getCurrentDir = async (path) => {
     }
   }
 
-  return `Your current directory is ${currentDir}\x1b[0m\n`;
+  return currentDir;
 }
