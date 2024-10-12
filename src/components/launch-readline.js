@@ -5,6 +5,7 @@ import { printMagentaText } from '../utils/get-color-coded-text.js';
 import { INVALID_INPUT_TEXT, PROMPT_TEXT } from '../utils/constants.js';
 import username from './get-username.js';
 import { getGoodbyeText } from '../utils/get-text.js';
+import { handleCommand } from '../commands/handle-command.js';
 
 const launchReadline = async () => {
     printMagentaText(PROMPT_TEXT);
