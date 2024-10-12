@@ -4,11 +4,12 @@ import { printGreenText } from "../../utils/get-color-coded-text.js";
 import { INVALID_INPUT_TEXT } from '../../utils/constants.js';
 
 export default async function handleOsCommand (argument) {
-    // console.log(argument);
-
     switch (argument) {
         case '--EOL':
-            await cmdEOL();
+            cmdEOL();
+            break;
+        case '--cpus':
+            cmdCPUs();
             break;
         default:
             console.error(INVALID_INPUT_TEXT);
@@ -17,6 +18,15 @@ export default async function handleOsCommand (argument) {
 
 /* OS commands */
 
-async function cmdEOL(){
+function cmdEOL(){
     printGreenText(`Default system EOL is ${JSON.stringify(os.EOL)}.`)
+}
+
+function cmdCPUs(){
+    const cpus = os.cpus();
+
+    printGreenText(`CPUs info:
+        CPUs amount: ${JSON.stringify(cpus.length)}
+        CPUs model: ${cpus[0].model.trim()}
+        CPUs clock rate: ${JSON.stringify(cpus[0].speed/1000)} GHz\n`)
 }
