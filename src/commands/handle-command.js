@@ -1,7 +1,7 @@
 import { getCurrentDir } from "../components/get-current-dir.js";
 import { INVALID_INPUT_TEXT, PROMPT_TEXT } from "../utils/constants.js";
 import { printMagentaText } from "../utils/get-color-coded-text.js";
-import { cmdLs } from "./navigation/navigation-handlers.js";
+import { cmdLs, cmdUp } from "./navigation/navigation-handlers.js";
 import handleOsCommand from "./os/os-handler.js";
 
 export async function handleCommand (input) {
@@ -12,6 +12,12 @@ export async function handleCommand (input) {
         switch (commandBase) {
             case 'ls':
                 await cmdLs(await getCurrentDir());
+                break;
+            case 'up':
+                await cmdUp();
+                break;
+            case 'cd':
+                await cmdUp(commandArgs[0]);
                 break;
 
             case 'os':
