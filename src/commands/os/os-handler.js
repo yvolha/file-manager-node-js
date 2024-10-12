@@ -11,6 +11,9 @@ export default async function handleOsCommand (argument) {
         case '--cpus':
             cmdCPUs();
             break;
+        case '--homedir':
+            cmdHomerdir();
+            break;
         default:
             console.error(INVALID_INPUT_TEXT);
     }
@@ -29,4 +32,8 @@ function cmdCPUs(){
         CPUs amount: ${JSON.stringify(cpus.length)}
         CPUs model: ${cpus[0].model.trim()}
         CPUs clock rate: ${JSON.stringify(cpus[0].speed/1000)} GHz\n`)
+}
+
+function cmdHomerdir(){
+    printGreenText(`The home directory is ${JSON.stringify(os.homedir())}.`)
 }
