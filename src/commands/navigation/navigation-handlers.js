@@ -19,3 +19,11 @@ export const cmdLs = async (directory) => {
 
   console.table(typedItems);
 }
+
+export const cmdUp = async () => {
+    await updateCurrentDir('up');
+}
+
+export const cmdCd = async (newPath) => {
+    await updateCurrentDir(newPath.toString().trim());
+}
