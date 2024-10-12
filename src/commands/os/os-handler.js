@@ -14,6 +14,9 @@ export default async function handleOsCommand (argument) {
         case '--homedir':
             cmdHomerdir();
             break;
+        case '--username':
+            cmdUSerInfo();
+            break;
         default:
             console.error(INVALID_INPUT_TEXT);
     }
@@ -36,4 +39,8 @@ function cmdCPUs(){
 
 function cmdHomerdir(){
     printGreenText(`The home directory is ${JSON.stringify(os.homedir())}.`)
+}
+
+function cmdUSerInfo(){
+    printGreenText(`The current System Username is ${os.userInfo().username}.`)
 }
