@@ -1,9 +1,11 @@
-import { DEFAULT_USERNAME_TEXT } from "../utils/constants.js";
-import { printYellowText } from "../utils/get-color-coded-text.js";
+import { DEFAULT_USERNAME_TEXT, NODE_WARNING } from "../utils/constants.js";
+import { printBlueText, printYellowText } from "../utils/get-color-coded-text.js";
 
 let username = 'Username';
 
 export function getUsername(){
+    printBlueText(NODE_WARNING);
+
     const nameArg = '--username';
     const nameValueArgSeparator = '=';
 

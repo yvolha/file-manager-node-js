@@ -13,15 +13,15 @@ const launchReadline = async () => {
 
     rl.on('line', async (input) => {
         if (input === '.exit') {
-        printMagentaText(getGoodbyeText(username));
-        rl.close();
+            printMagentaText(getGoodbyeText(username));
+            rl.close();
 
         } else if (input.length > 0) {
 
-        // await handleCommand(input);
+            await handleCommand(input);
         } else {
 
-        console.log(INVALID_INPUT_TEXT);
+            console.log(INVALID_INPUT_TEXT);
         }
     });
   
