@@ -15,7 +15,10 @@ export default async function handleOsCommand (argument) {
             cmdHomerdir();
             break;
         case '--username':
-            cmdUSerInfo();
+            cmdUserInfo();
+            break;
+        case '--architecture':
+            cmdArchitecture();
             break;
         default:
             console.error(INVALID_INPUT_TEXT);
@@ -38,9 +41,13 @@ function cmdCPUs(){
 }
 
 function cmdHomerdir(){
-    printGreenText(`The home directory is ${JSON.stringify(os.homedir())}.`)
+    printGreenText(`The home directory is ${JSON.stringify(os.homedir())}.\n`)
 }
 
-function cmdUSerInfo(){
-    printGreenText(`The current System Username is ${os.userInfo().username}.`)
+function cmdUserInfo(){
+    printGreenText(`The current System Username is ${os.userInfo().username}.\n`)
+}
+
+function cmdArchitecture(){
+    printGreenText(`The current CPU architecture for which Node.JS binary has compiled is ${os.arch()}.\n`)
 }
