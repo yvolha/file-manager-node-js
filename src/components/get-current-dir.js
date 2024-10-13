@@ -1,4 +1,4 @@
-import { join, parse,sep } from 'path';
+import { isAbsolute, join, parse,sep } from 'path';
 import { homedir } from 'os';
 import { OPERATION_FAILED_TEXT } from '../utils/constants.js';
 import { getIsPathExisting } from '../utils/get-is-path-existing.js';
@@ -18,23 +18,22 @@ export const getCurrentDir = async (path) => {
     currentDir = join(currentDir, '..');
 
   } else if (typeof path === 'string') {
+    console.log(isAbsolute(path),'isAbsolute(path)');
 
-    if (path.startsWith('.') || !path.includes(sep)) {
-      const interimPath = join(currentDir, path.replace(/^["'](.+(?=["']$))["']$/, '$1'));
-      
-      if (!(await getIsPathExisting(interimPath))) {
+    if (isAbsolute(path)) {
+      if (!(await getIsPathExisting(path))) {
         console.error(OPERATION_FAILED_TEXT);
 
         return;
       };
 
-      currentDir = interimPath;
+      currentDir = path;
 
     } else {
-
-      const interimPath = path.replace(/^["'](.+(?=["']$))["']$/, '$1');
+      const interimPath = join(currentDir, path.replace(/^["'](.+(?=["']$))["']$/, '$1'));
+      
       if (!(await getIsPathExisting(interimPath))) {
-        console.log(OPERATION_FAILED_TEXT);
+        console.error(OPERATION_FAILED_TEXT);
 
         return;
       };
