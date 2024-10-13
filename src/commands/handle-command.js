@@ -33,6 +33,10 @@ export async function handleCommand (input) {
             case 'os':
                 handleOsCommand(commandArgs[0]);
                 break;
+
+            default: 
+                console.error(INVALID_INPUT_TEXT);
+                break;
         }
     } catch (e) {
         console.log('CAUGHT SOMETHING', e)
@@ -40,6 +44,9 @@ export async function handleCommand (input) {
     }
     
 
-    console.log(`Your current directory is \x1b[32m${await getCurrentDir()}\x1b[0m\n`);
-    printMagentaText(PROMPT_TEXT);
+    
+    setTimeout(async () => {
+        console.log(`Your current directory is \x1b[32m${await getCurrentDir()}\x1b[0m\n`);
+        printMagentaText(PROMPT_TEXT)
+    }, 600); 
 }

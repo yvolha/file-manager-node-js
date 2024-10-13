@@ -18,7 +18,6 @@ export const getCurrentDir = async (path) => {
     currentDir = join(currentDir, '..');
 
   } else if (typeof path === 'string') {
-    console.log(isAbsolute(path),'isAbsolute(path)');
 
     if (isAbsolute(path)) {
       if (!(await getIsPathExisting(path))) {
