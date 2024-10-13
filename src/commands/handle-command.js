@@ -1,6 +1,7 @@
 import { getCurrentDir } from "../components/get-current-dir.js";
 import { INVALID_INPUT_TEXT, PROMPT_TEXT } from "../utils/constants.js";
 import { printMagentaText } from "../utils/get-color-coded-text.js";
+import { cmdCat } from "./file-operations/file-operation-handler.js";
 import { cmdCd, cmdLs, cmdUp } from "./navigation/navigation-handlers.js";
 import handleOsCommand from "./os/os-handler.js";
 
@@ -10,6 +11,7 @@ export async function handleCommand (input) {
         const commandArgs = input.toString().trim().split(' ').slice(1).filter(e => e);
     
         switch (commandBase) {
+            /* Navigation commands */
             case 'ls':
                 await cmdLs(await getCurrentDir());
                 break;
@@ -20,6 +22,14 @@ export async function handleCommand (input) {
                 await cmdCd(commandArgs[0]);
                 break;
 
+            /* File operations commands */
+            case 'cat':
+                await cmdCat(commandArgs[0]);
+                break;
+
+
+
+            /* OS commands */
             case 'os':
                 handleOsCommand(commandArgs[0]);
                 break;
