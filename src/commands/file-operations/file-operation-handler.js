@@ -103,3 +103,15 @@ export async function cmdCpMv (fileName, dirPath, isMove ) {
         console.error(OPERATION_FAILED_TEXT);
     }
   }
+
+  export async function cmdRm (filePath) {
+    const currentDir = await getCurrentDir();
+    const currentFilePath = path.join(currentDir, filePath);
+
+    if (await getIsPathExisting(currentFilePath)){
+        unlink(currentFilePath);
+
+    } else {
+        console.error(OPERATION_FAILED_TEXT);
+    }
+  }

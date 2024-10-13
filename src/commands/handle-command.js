@@ -5,6 +5,7 @@ import {
     cmdAdd, 
     cmdCat, 
     cmdCpMv, 
+    cmdRm, 
     cmdRn,
 } from "./file-operations/file-operation-handler.js";
 import { cmdCd, cmdLs, cmdUp } from "./navigation/navigation-handlers.js";
@@ -42,6 +43,9 @@ export async function handleCommand (input) {
                 break;
             case 'mv':
                 await cmdCpMv(commandArgs[0], commandArgs[1], true);
+                break;
+            case 'rm':
+                await cmdRm(commandArgs[0]);
                 break;
 
             /* OS commands */
