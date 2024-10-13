@@ -1,7 +1,7 @@
 import { getCurrentDir } from "../components/get-current-dir.js";
 import { INVALID_INPUT_TEXT, PROMPT_TEXT } from "../utils/constants.js";
 import { printMagentaText } from "../utils/get-color-coded-text.js";
-import { cmdAdd, cmdCat, cmdRn } from "./file-operations/file-operation-handler.js";
+import { cmdAdd, cmdCat, cmdCp, cmdRn } from "./file-operations/file-operation-handler.js";
 import { cmdCd, cmdLs, cmdUp } from "./navigation/navigation-handlers.js";
 import handleOsCommand from "./os/os-handler.js";
 
@@ -31,6 +31,9 @@ export async function handleCommand (input) {
                 break;
             case 'rn':
                 await cmdRn(commandArgs[0], commandArgs[1]);
+                break;
+            case 'cp':
+                await cmdCp(commandArgs[0], commandArgs[1]);
                 break;
 
 

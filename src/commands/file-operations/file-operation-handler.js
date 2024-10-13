@@ -1,9 +1,16 @@
 import path from 'path';
-import { access, createReadStream, rename, writeFile } from 'fs';
+import { 
+    access, 
+    createReadStream, 
+    createWriteStream, 
+    rename, 
+    writeFile,
+ } from 'fs';
 
 import { getCurrentDir } from "../../components/get-current-dir.js";
 import { getIsPathExisting } from "../../utils/get-is-path-existing.js";
 import { OPERATION_FAILED_TEXT } from '../../utils/constants.js';
+import { pipeline } from 'node:stream/promises';
 
 export async function cmdCat (fileName) {
     const currentDir = await getCurrentDir();
@@ -66,3 +73,26 @@ export async function cmdRn (previousName, newName) {
         }
     )
 }
+
+export async function cmdCp (fileName, dirPath){
+    const currentDir = await getCurrentDir();
+    const currentFilePath = path.join(currentDir, fileName);
+  
+    if (await getIsPathExisting(currentFilePath)){
+        const { base } = path.parse(currentFilePath);
+        const newFilePath = path.join(currentDir, dirPath, base);
+
+        if (!await getIsPathExisting(newFilePath)){
+            console.error(OPERATION_FAILED_TEXT);
+            return;
+        }
+
+        const readableStream = createReadStream(currentFilePath);
+        const writeableStream = createWriteStream(newFilePath);
+
+        pipeline(readableStream, writeableStream);
+
+    } else {
+        console.error(OPERATION_FAILED_TEXT);
+    }
+  }
