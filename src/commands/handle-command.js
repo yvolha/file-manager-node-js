@@ -1,6 +1,7 @@
 import { getCurrentDir } from "../components/get-current-dir.js";
 import { INVALID_INPUT_TEXT, PROMPT_TEXT } from "../utils/constants.js";
 import { printMagentaText } from "../utils/get-color-coded-text.js";
+import { cmdCompress, cmdDecompress } from "./compression/compression-handler.js";
 import { 
     cmdAdd, 
     cmdCat, 
@@ -54,6 +55,14 @@ export async function handleCommand (input) {
                 await cmdHash(commandArgs[0]);
                 break;
 
+            /* Compression commands */
+            case 'compress':
+                await cmdCompress(commandArgs[0], commandArgs[1]);
+                break;
+            case 'decompress':
+                await cmdDecompress(commandArgs[0], commandArgs[1]);
+                break;
+
             /* OS commands */
             case 'os':
                 handleOsCommand(commandArgs[0]);
@@ -63,8 +72,8 @@ export async function handleCommand (input) {
                 console.error(INVALID_INPUT_TEXT);
                 break;
         }
+
     } catch (e) {
-        console.log('CAUGHT SOMETHING', e)
         console.error(INVALID_INPUT_TEXT);
     }
     

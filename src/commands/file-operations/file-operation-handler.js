@@ -75,7 +75,7 @@ export async function cmdRn (previousName, newName) {
     )
 }
 
-export async function cmdCpMv (fileName, dirPath, isMove ) {
+export async function cmdCpMv (fileName, dirPath = '', isMove ) {
     const currentDir = await getCurrentDir();
     const currentFilePath = path.join(currentDir, fileName);
   
