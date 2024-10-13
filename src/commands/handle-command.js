@@ -8,6 +8,7 @@ import {
     cmdRm, 
     cmdRn,
 } from "./file-operations/file-operation-handler.js";
+import { cmdHash } from "./hash/hash-handler.js";
 import { cmdCd, cmdLs, cmdUp } from "./navigation/navigation-handlers.js";
 import handleOsCommand from "./os/os-handler.js";
 
@@ -46,6 +47,11 @@ export async function handleCommand (input) {
                 break;
             case 'rm':
                 await cmdRm(commandArgs[0]);
+                break;
+
+            /* Hash commands */
+            case 'hash':
+                await cmdHash(commandArgs[0]);
                 break;
 
             /* OS commands */
