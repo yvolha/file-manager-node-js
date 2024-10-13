@@ -1,5 +1,6 @@
 import { readdir } from 'fs/promises';
 import { OPERATION_FAILED_TEXT } from '../../utils/constants.js';
+import { getCurrentDir } from '../../components/get-current-dir.js';
 
 const TYPE_DIRECTORY = 'directory';
 const TYPE_FILE = 'file';
@@ -21,9 +22,9 @@ export const cmdLs = async (directory) => {
 }
 
 export const cmdUp = async () => {
-    await updateCurrentDir('up');
+    await getCurrentDir('up');
 }
 
 export const cmdCd = async (newPath) => {
-    await updateCurrentDir(newPath.toString().trim());
+    await getCurrentDir(newPath.toString().trim());
 }
