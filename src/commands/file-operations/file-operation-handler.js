@@ -1,5 +1,5 @@
 import path from 'path';
-import { createReadStream, writeFile } from 'fs';
+import { access, createReadStream, rename, writeFile } from 'fs';
 
 import { getCurrentDir } from "../../components/get-current-dir.js";
 import { getIsPathExisting } from "../../utils/get-is-path-existing.js";
@@ -39,4 +39,30 @@ export async function cmdAdd (fileName) {
             }
         },
     );
+}
+
+export async function cmdRn (previousName, newName) {
+    const currentDir = await getCurrentDir();
+
+    const previousPath = path.join(currentDir, previousName);
+    const newPath = path.join(currentDir, newName);
+
+    access(
+        newPath, 
+        (err) => {
+            if (!err) {
+                console.error(OPERATION_FAILED_TEXT);
+            }
+
+            rename(
+                previousPath, 
+                newPath,
+                (err) => {
+                    if (err) {
+                        console.error(OPERATION_FAILED_TEXT);
+                    }
+                },
+            )
+        }
+    )
 }
