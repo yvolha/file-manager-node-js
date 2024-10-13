@@ -1,7 +1,7 @@
 import { stat } from "fs/promises";
 
 export async function getIsPathExisting (str) {
-    await stat(str)
+    return await stat(str)
         .then(() => true)
-        .catch(() => false);
+        //.catch(() => false);
 } 

@@ -1,7 +1,7 @@
 import { getCurrentDir } from "../components/get-current-dir.js";
 import { INVALID_INPUT_TEXT, PROMPT_TEXT } from "../utils/constants.js";
 import { printMagentaText } from "../utils/get-color-coded-text.js";
-import { cmdLs, cmdUp } from "./navigation/navigation-handlers.js";
+import { cmdCd, cmdLs, cmdUp } from "./navigation/navigation-handlers.js";
 import handleOsCommand from "./os/os-handler.js";
 
 export async function handleCommand (input) {
@@ -17,14 +17,15 @@ export async function handleCommand (input) {
                 await cmdUp();
                 break;
             case 'cd':
-                await cmdUp(commandArgs[0]);
+                await cmdCd(commandArgs[0]);
                 break;
 
             case 'os':
                 handleOsCommand(commandArgs[0]);
                 break;
         }
-    } catch {
+    } catch (e) {
+        console.log('CAUGHT SOMETHING', e)
         console.error(INVALID_INPUT_TEXT);
     }
     
